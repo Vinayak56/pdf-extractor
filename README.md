@@ -22,9 +22,13 @@ pip install filetype
 
 ## Software Requirement
 ### Tesseract
-Tesseract: it’s the OCR(Optical character recognition) engine, so the core of the actual text recognition. It takes the image and in return gives us the text.
+Tesseract: It’s the OCR(Optical character recognition) engine, so the core of the actual text recognition. It takes the image and in return gives us the text.
 
 Download Tesseract : https://github.com/UB-Mannheim/tesseract/wiki
+
+Poppler: It’s an open source set of libraries and command line tools, very useful for dealing with PDF files
+
+Download Poppler : https://blog.alivate.com.au/poppler-windows/
 
 ## Then open Terminal and move in the directory where pdf_extractor.py file is located
 
