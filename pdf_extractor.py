@@ -1,3 +1,4 @@
+# Importing Modules
 import os
 from pdf2image import convert_from_path
 from bs4 import BeautifulSoup
@@ -8,6 +9,12 @@ import cv2
 import json
 import pytesseract
 import filetype
+
+# List of all Urls
+# There are two kind of url’s
+# A. Urls which are ending with “.pdf” which directly trigger downloading of the pdf file.
+# B. Urls with the link to the page where “pdf” files are located. In order to extract from files like these you would need to scrape the html content 
+# and look for pdf links in it!
 urls = [
     "https://mpsctopper.com/wp-content/uploads/2022/01/12th-std-Political-Science-Book-in-Marathi.pdf",
     "https://mpsctopper.com/wp-content/uploads/2022/01/12th-std-History-Book-Pdf-in-Marathi.pdf",
@@ -59,11 +66,13 @@ urls = [
     "https://archive.org/details/dli.ministry.31029/page/n7/mode/2up?view=theater"
 ]
 
+# creation of directory for storing pdf file and a particular page from pdf from which we will extract paragraph content
 output_dir = "./pdfs"
 output_img_dir = "./pdfs/images"
 os.mkdir(output_dir)
 os.mkdir(output_img_dir)
 
+# For Checking weather tthe file is a actual pdf file or not
 def is_pdf(path_to_file):
     try:
         if(filetype.guess(path_to_file).mime == 'application/pdf'):
@@ -73,6 +82,7 @@ def is_pdf(path_to_file):
     except AttributeError:
         return False
 
+# Downloading the pdf files from all the url's above and saving in the dir
 pdf_urls = []
 i=1
 for url in urls:
@@ -95,7 +105,10 @@ for url in urls:
             f.write(response.content)
     i +=1
 
+# Using Tesseract software Engine for extraction of text from pdf page
 pytesseract.pytesseract.tesseract_cmd = r"E:\Tesseract\tesseract.exe"
+
+# Downloading the images of the pages in the pdf file and extracting text from it using Tesseract software and poppler software
 ll = []
 for j in range(1,i+1):
     pdf_file = f"./pdfs/book{j}.pdf"
@@ -126,6 +139,8 @@ for j in range(1,i+1):
             ss = text[sln+1:nsln]
         sln = nsln+1
     ll.append({"page-url":urls[j-1],"pdf-url":pdf_urls[j-1],"paragraph":ss.replace("\n"," ")})
+    
+    # saving the output in the pdf_extract.json file
     with open("pdf_extract.json", "w", encoding="utf8") as final:
         json.dump(ll, final, ensure_ascii=False)
 
