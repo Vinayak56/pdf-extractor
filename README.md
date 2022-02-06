@@ -26,6 +26,8 @@ Tesseract: It’s the OCR(Optical character recognition) engine, so the core of 
 
 Download Tesseract : https://github.com/UB-Mannheim/tesseract/wiki
 
+### Poppler
+
 Poppler: It’s an open source set of libraries and command line tools, very useful for dealing with PDF files
 
 Download Poppler : https://blog.alivate.com.au/poppler-windows/
