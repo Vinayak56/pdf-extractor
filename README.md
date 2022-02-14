@@ -22,7 +22,7 @@ pip install filetype
 
 ## Software Requirement
 ### Tesseract
-Tesseract: It’s the OCR(Optical character recognition) engine, so the core of the actual text recognition. It takes the image and in return gives us the text.
+Tesseract: It’s the **OCR(Optical character recognition) engine**, so the core of the actual text recognition. It takes the image and in return gives us the text.
 
 Download Tesseract : https://github.com/UB-Mannheim/tesseract/wiki
 
